@@ -1,9 +1,20 @@
 // npm packages
 import React from 'react';
- export default ({series}) => (
-  <div>
-    <img src={series.image} />
-    <a href={series.url}>{series.title}</a>
-    <span>{series.count}</span>
+
+export default ({series}) => (
+  <div className="column card">
+    <div className="card-image">
+      <figure className="image is-3by4">
+        <img src={series.image} alt={series.title}/>
+      </figure>
+    </div>
+    <div className="card-content">
+      <div className="media">
+        <div className="media-content">
+          <p className="title is-4">{series.title}</p>
+          <p className="subtitle is-6">Videos count: {series.count}</p>
+        </div>
+      </div>
+    </div>
   </div>
 );

@@ -4,19 +4,21 @@ import {Observable} from 'rxjs';
 // our packages
 import db from '../db';
 import {Crunchyroll} from '../api/crunchroll';
+import _ from "lodash";
 // our components
 import Series from '../components/series/series'
 
 export default class Home extends React.Component {
   constructor() {
     super();
-     this.state = {
+    this.state = {
       series: [],
     };
-     // trigger list update
+    // trigger list update
     Crunchyroll.getAllSeries();
   }
-   componentDidMount() {
+
+  componentDidMount() {
     this.sub = Observable.fromEvent(
       db.series.changes({
         since: 0,
@@ -29,19 +31,27 @@ export default class Home extends React.Component {
       .map(change => change.doc)
       .scan((acc, doc) => acc.concat([doc]), [])
       .debounceTime(1000)
-      .subscribe(series => console.log(series)&&this.setState({series}));
+      .subscribe(series => this.setState({series}));
   }
-   componentWillUnmount() {
+
+  componentWillUnmount() {
     this.sub.unsubscribe();
+
   }
-   render() {
-     
-    
+
+  render() {
+
+
     const {series} = this.state;
-     return (
+    return (
       <div>
-        {series.map(s => <Series key={s._id} series={s} />)}
+        {_.chunk(series, 4).map((chunk,i) => (
+          <div key = {`chunk_${i}`} className="columns">
+            {chunk.map(s => <Series key={s._id} series={s}/>)}
+          </div>
+        ))}
       </div>
+
     );
   }
 }

@@ -9,7 +9,7 @@ import Other from './pages/other';
 // render on page
 ReactDOM.render(
   <BrowserRouter>
-    <div>
+    <div className="container is-fluid">
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/other">Other</Link></li>
@@ -20,7 +20,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/other" component={Other} />
-        <Route component={() => <div><h1>Select route</h1></div>} />
+        <Route component={Home} />
       </Switch>
     </div>
   </BrowserRouter>,
