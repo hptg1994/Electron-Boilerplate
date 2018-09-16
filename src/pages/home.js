@@ -35,6 +35,7 @@ export default class Home extends React.Component {
     this.sub.unsubscribe();
   }
    render() {
+     
     
     const {series} = this.state;
      return (
