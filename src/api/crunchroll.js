@@ -20,7 +20,8 @@ export const Crunchyroll = {
         // get title & url
         const a = $('a', element);
         const title = a.attr('title');
-        const url = `${baseURL}${a.attr('href')}`;
+        const id = a.attr('href');
+        const url = `${baseURL}${id}`;
         // get image
         const img = $('img', element);
         const image = img.attr('src');
@@ -32,6 +33,8 @@ export const Crunchyroll = {
         );
         // return series data
         return {
+          id,
+          source: 'crunchyroll',
           title,
           url,
           image,
@@ -43,8 +46,16 @@ export const Crunchyroll = {
     await db.series.bulkDocs(series);
      return series;
   },
-  getEpisodes(series) {},
-  getEpisode(episode) {},
-  getMySeries() {},
-  search(query) {},
+  getEpisodes(series) {
+
+  },
+  getEpisode(episode) {
+
+  },
+  getMySeries() {
+
+  },
+  search(query) {
+    
+  },
 };

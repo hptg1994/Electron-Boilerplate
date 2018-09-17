@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 
 import Home from './pages/home';
-import Other from './pages/other';
+import Series from './pages/series';
 
 // render on page
 ReactDOM.render(
@@ -19,7 +19,7 @@ ReactDOM.render(
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/other" component={Other} />
+        <Route path="/series/:id" component={Series} />
         <Route component={Home} />
       </Switch>
     </div>
