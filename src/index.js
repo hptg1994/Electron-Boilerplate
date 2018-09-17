@@ -1,14 +1,14 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch} from 'react-router-dom';
 
 import Home from './pages/home';
 import Series from './pages/series';
 
 // render on page
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <div className="container is-fluid">
       <ul>
         <li><Link to="/">Home</Link></li>
@@ -23,6 +23,6 @@ ReactDOM.render(
         <Route component={Home} />
       </Switch>
     </div>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById('app')
 );

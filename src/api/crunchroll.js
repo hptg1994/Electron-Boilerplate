@@ -14,6 +14,7 @@ export const Crunchyroll = {
     );
     // create cheerio cursor
     const $ = cheerio.load(data);
+
     const series = $('li.group-item')
       .map((index, el) => {
         const element = $(el);
@@ -47,7 +48,27 @@ export const Crunchyroll = {
      return series;
   },
   getEpisodes(series) {
-
+    // load episodes    
+    const {data} = await axios.get(series.url);
+    // create cheerio cursor
+    const $ = cheerio.load(data);
+    const episodesContainer = $('ul.portrait-grid');
+    const episode = $(".group-item",episodesContainer).map((index,el) => {
+      const element = $(el);
+      const id = $('a.episode',element).attr("href");
+      const image = $("img",element).attr("src");
+      const title = $(".series-title",element).text().trim();
+      const description = $(".short-desc",element).text().trim()
+      return {
+        id,
+        url,
+        image,
+        title,
+        description
+      };
+    }).get();
+    console.log(episode);
+    return episode;
   },
   getEpisode(episode) {
 
