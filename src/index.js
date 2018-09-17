@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch, Link} from 'react-router-dom';
 
 import Home from './pages/home';
 import Series from './pages/series';

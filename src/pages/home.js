@@ -36,7 +36,6 @@ export default class Home extends React.Component {
 
   componentWillUnmount() {
     this.sub.unsubscribe();
-
   }
 
   render() {
@@ -51,7 +50,6 @@ export default class Home extends React.Component {
           </div>
         ))}
       </div>
-
     );
   }
 }

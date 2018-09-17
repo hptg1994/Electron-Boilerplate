@@ -47,16 +47,19 @@ export const Crunchyroll = {
     await db.series.bulkDocs(series);
      return series;
   },
-  getEpisodes(series) {
+
+  async getEpisodes(series) {
     // load episodes    
     const {data} = await axios.get(series.url);
     // create cheerio cursor
     const $ = cheerio.load(data);
-    const episodesContainer = $('ul.portrait-grid');
+    const episodesContainer = $('.list-of-seasons ul.portrait-grid');
     const episode = $(".group-item",episodesContainer).map((index,el) => {
       const element = $(el);
       const id = $('a.episode',element).attr("href");
-      const image = $("img",element).attr("src");
+      const url = `${baseURL}${id}`;
+      const img = $("img",element)
+      const image = img.attr("src") || img.attr('data-thumbnaiurl')
       const title = $(".series-title",element).text().trim();
       const description = $(".short-desc",element).text().trim()
       return {
@@ -67,7 +70,9 @@ export const Crunchyroll = {
         description
       };
     }).get();
-    console.log(episode);
+    
+    // store in the db;
+    await db.episodes.bulkDocs(episode);
     return episode;
   },
   getEpisode(episode) {
