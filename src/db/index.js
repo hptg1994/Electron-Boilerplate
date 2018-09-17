@@ -3,4 +3,5 @@ import PouchDB from 'pouchdb-browser';
   series: new PouchDB('series'),
   episodes: new PouchDB('episodes'),
 };
+
  export default db;

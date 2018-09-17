@@ -5,6 +5,7 @@ import {HashRouter, Route, Switch, Link} from 'react-router-dom';
 
 import Home from './pages/home';
 import Series from './pages/series';
+import Episode from "./pages/episode";
 
 // render on page
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/series/:id" component={Series} />
+        <Route path="/episode/:id" component={Episode} />
         <Route component={Home} />
       </Switch>
     </div>

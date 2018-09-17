@@ -14,9 +14,9 @@ export default class Home extends React.Component {
     this.state = {
       series: [],
     };
-    // trigger list update
     Crunchyroll.getAllSeries();
   }
+
 
   componentDidMount() {
     this.sub = Observable.fromEvent(
@@ -39,8 +39,6 @@ export default class Home extends React.Component {
   }
 
   render() {
-
-
     const {series} = this.state;
     return (
       <div>
